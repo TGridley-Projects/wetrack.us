@@ -11,7 +11,7 @@ app.use(express.json());
 
 massive({connectionString: CONNECTION_STRING,
     ssl:{rejectUnauthorized: false}
-    }).then(db => {app.set('db')
+    }).then(db => {app.set('db',db)
     console.log('database has connected successfully')
     }).catch(err => console.log(err));
 
@@ -24,6 +24,7 @@ app.use(session({
     }
 }));
 
-
+app.post('/auth/register', ctrl.register);
+app.post('/auth/login', ctrl.login);
 
 app.listen (SERVER_PORT, () => console.log(`server is listening successfully on port ${SERVER_PORT}`))
