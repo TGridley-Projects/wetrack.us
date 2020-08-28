@@ -42,14 +42,14 @@ class Auth extends Component {
         <section className="loginBox">
           <h1>Please login.</h1>
           <h3>If you don't already have an account please register.</h3>
-          <h5>Username:</h5>
+          <p>Username:</p>
           <input
             onChange={(e) => this.changeHandler(e)}
             name="username"
             type="text"
             value={username}
           />
-          <h5>Password:</h5>
+          <p>Password:</p>
           <input
             onChange={(e) => this.changeHandler(e)}
             name="password"
@@ -59,7 +59,7 @@ class Auth extends Component {
         </section>
         <section className="authButtons">
           <button onClick={this.login}>Login</button>
-          {/* <button onClick={this.props.history.push('/register')}>Register</button> */}
+          <button onClick={(e) => {this.props.history.push('/register')}}>Register</button>
         </section>
       </div>
     );
