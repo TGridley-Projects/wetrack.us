@@ -3,7 +3,8 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const {CONNECTION_STRING, SERVER_PORT, SESSION_SECRET} = process.env;
-const ctrl = require('./controller');
+const authctrl = require('./controllers/authController');
+const ctrl = require('./controllers/controller');
 
 const app = express();
 
@@ -24,7 +25,8 @@ app.use(session({
     }
 }));
 
-app.post('/auth/register', ctrl.register);
-app.post('/auth/login', ctrl.login);
+app.post('/auth/register', authctrl.register);
+app.post('/auth/login', authctrl.login);
+app.post('/api/main_workout', ctrl.addMain)
 
 app.listen (SERVER_PORT, () => console.log(`server is listening successfully on port ${SERVER_PORT}`))
