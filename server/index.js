@@ -27,6 +27,7 @@ app.use(session({
 
 app.post('/auth/register', authctrl.register);
 app.post('/auth/login', authctrl.login);
-app.post('/api/main_workout', ctrl.addMain)
+app.post('/api/main_workout', ctrl.addMain);
+app.post('/api/other_workout', ctrl.addOther);
 
 app.listen (SERVER_PORT, () => console.log(`server is listening successfully on port ${SERVER_PORT}`))
