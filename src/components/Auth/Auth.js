@@ -53,7 +53,7 @@ class Auth extends Component {
           <input
             onChange={(e) => this.changeHandler(e)}
             name="password"
-            type="text"
+            type="password"
             value={password}
           />
         </section>

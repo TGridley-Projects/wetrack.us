@@ -35,4 +35,14 @@ module.exports = {
         console.log(err);
       });
   },
+  mainWorkouts5: (req, res) => {
+    const db = req.app.get("db");
+    db.get_main_workouts5().then((workouts) => res.status(200).send(workouts))
+  },
+  profile: (req, res) => {
+    const id = req.params
+    console.log(id)
+    const db = req.app.get("db");
+    db.get_profile([id]).then((res) => res.status(200).send(res))
+  }
 };
