@@ -1,5 +1,5 @@
 const initialState = {
-  user: { user_id: 0, username: "", profile_pic: "" },
+  user: { username: "", profile_pic: "" },
 };
 
 const ADD_USER = "ADD_USER";

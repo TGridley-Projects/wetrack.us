@@ -41,15 +41,15 @@ class Register extends Component{
         <div className='register'>
             <h1>Registration</h1>
             <p>Username</p>
-            <input onChange={(e) => this.handleChange(e)} name='username' type='text' value={username}/>
+            <input onChange={(e) => this.handleChange(e)} name='username' type='text' value={username} required/>
             <p>Password</p>
-            <input onChange={(e) => this.handleChange(e)} name='password' type='password' value={password}/>
+            <input onChange={(e) => this.handleChange(e)} name='password' type='password' value={password} required/>
             <p>Profile Picture</p>
             <input onChange={(e) => this.handleChange(e)} name='profile_pic' type='text' value={profile_pic}/>
             <p>Phone Number</p>
             <input onChange={(e) => this.handleChange(e)} name='phone_number' type='integer' value={phone_number}/>
             <p>Email</p>
-            <input onChange={(e) => this.handleChange(e)} name='email' type='text' value={email}/>
+            <input onChange={(e) => this.handleChange(e)} name='email' type='email' value={email}/>
             <button onClick={(e) => {this.register(e)}}>Register</button>
             <button onClick={(e) => {this.props.history.push('/')}}>Login</button>
         </div>

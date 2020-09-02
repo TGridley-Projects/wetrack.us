@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import Display from "../../Display/Displaymain";
+import Displaymain from "../../Display/Displaymain";
 
 const Mainview = () => {
   const [workouts, setWorkouts] = useState([]);
@@ -8,27 +8,20 @@ const Mainview = () => {
   const getMainWorkouts = () => {
     Axios.get("/api/mainworkouts5")
     .then((res) => {
-      setWorkouts(res);
+      setWorkouts(res.data);
     })
     .catch((err) => console.log(err));
   };
-  const getUser = (id) => {
-    Axios.get(`/api/profile/?${id}`)
-    .then(res => {return(console.log(res.username),(res.username))})
-    .catch(err => console.log(err))
-    
-  }
   
-  const toDisplay = () => {
-    if(workouts.data){
-    workouts.data.map((workout, ind) => {
-        return <Display key={workout.main_workout_id} workout={workout} username={getUser(workout.user_id)}/>;
+  const toDisplay = 
+    workouts.map((workout) => {
+        return(<Displaymain key="workouts.main_workout_id" workout={workout}/>);
       });
-    };}
+    
     useEffect(() => {getMainWorkouts()},[])
     return (
       <div>
-      {toDisplay()}
+      {toDisplay}
     </div>
   );
 };

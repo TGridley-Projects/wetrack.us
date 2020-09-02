@@ -32,7 +32,6 @@ class Auth extends Component {
         console.log(err);
         alert("Incorrect Username or Password");
       });
-    console.log(this.props);
   };
 
   render() {

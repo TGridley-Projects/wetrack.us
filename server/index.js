@@ -27,9 +27,11 @@ app.use(session({
 
 app.post('/auth/register', authctrl.register);
 app.post('/auth/login', authctrl.login);
+app.post('/auth/logout', authctrl.logout);
 app.post('/api/main_workout', ctrl.addMain);
 app.post('/api/other_workout', ctrl.addOther);
 app.get('/api/mainworkouts5', ctrl.mainWorkouts5);
-app.get('/api/profile/:id', ctrl.profile);
+app.get('/api/otherworkouts5', ctrl.otherWorkouts5);
+app.get('/api/publicprofile/:userid', ctrl.publicProfile);
 
 app.listen (SERVER_PORT, () => console.log(`server is listening successfully on port ${SERVER_PORT}`))

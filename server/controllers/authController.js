@@ -21,7 +21,7 @@ module.exports = {
       delete newUser.password;
       delete newUser.phone_number;
       delete newUser.email;
-      req.session.user = newUser;
+      req.session.userid = newUser.user_id;
       res.status(200).send(newUser);
     }
   },
@@ -37,7 +37,7 @@ module.exports = {
         delete foundUser.password;
         delete foundUser.phone_number;
         delete foundUser.email;
-        req.session.user = foundUser;
+        req.session.userid = foundUser.user_id;
         res.status(202).send(req.session.user);
       } else {
         res.status(401).send("Email or Password incorrect");
@@ -46,4 +46,8 @@ module.exports = {
       res.status(401).send("Email or Password incorrect");
     }
   },
+  logout: (req, res) => {
+    req.session.destroy()
+    then(res.sendStatus(401))
+  }
 };

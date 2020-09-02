@@ -1,9 +1,18 @@
 import React from 'react';
 
 const Displaymain = (props) =>{
-    const {workout_type, title, distance} = props.workout
-
-    return(console.log(props.workout, props.user))
+    let type = "";
+    const {workout_type, title, distance, username} = props.workout;
+    if(workout_type === 1){type = "run"}else if(workout_type === 2){type = "walk"}else{type = "bike ride"}
+    return(
+    <div>
+        {console.log(props)}
+        <h1>workout</h1>
+        {username}
+        {type}
+        {distance}
+        {title}
+    </div>)
 }
 
 export default Displaymain;
