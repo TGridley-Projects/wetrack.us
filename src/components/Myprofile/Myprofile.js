@@ -1,13 +1,11 @@
-import React from 'react';
-import Header from '../Header/Header';
+import React from "react";
 
-const Myprofile=function(){
-    return(
-        <div className='myProfile'>
-            <Header/>
-            <h1>My Profile</h1>
-        </div>
-    );
+const Myprofile = function () {
+  return (
+    <div className="myProfile">
+      <h1>My Profile</h1>
+    </div>
+  );
 };
 
 export default Myprofile;

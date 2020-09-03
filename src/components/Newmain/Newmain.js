@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../Header/Header";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -11,8 +10,7 @@ function Newmain() {
   const [time, setTime] = useState("");
   const [steps, setSteps] = useState(undefined);
   const [heart_rate, setHR] = useState(undefined);
-  // const [user_id, setUID] = useState(null);
-
+  
   function resetState() {
     setExercise(1);
     setTitle("");
@@ -44,7 +42,6 @@ function Newmain() {
   return (
     <div className="newMain">
       {console.log('CURRENTUSER',currentUser)}
-      <Header />
       <h1>New Main Workout</h1>
       <div onChange={(e) => setExercise(e.target.value)}>
         <input type="radio" value={1} defaultChecked name="exerciseType" /> Run

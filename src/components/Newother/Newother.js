@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../Header/Header";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -31,8 +30,7 @@ function Newother() {
   }
 
   return (
-    <div className="newOther">
-      <Header />
+    <div>
       <h1>New Other Workout</h1>
       <div>
         <input
