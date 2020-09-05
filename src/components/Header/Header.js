@@ -2,17 +2,28 @@ import React, { useEffect } from "react";
 import Axios from "axios";
 import logo from "../Assets/wtu1logo.png";
 import { Link } from 'react-router-dom';
-import { addUser } from '../../redux/Reducers/AuthReducer'
+import { addUser } from '../../redux/Reducers/AuthReducer';
+import { withrouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 
 const Header= function(props) {
+
+useEffect(() => {
+  props.addUser();
+  console.log(props.user);
+  // if(props.user.username === ""){
+  //   props.history.push("/");
+  // }
+},[])
 
   const logout = ()=>{
     Axios.post('/auth/logout')
   }
  const getUser = () => {
    Axios.post('/auth/')
-   .then(res => console.log('results?', res))
+   .then(res => console.log(res))
  }
 
  useEffect(() => {getUser()},[])
@@ -40,5 +51,9 @@ const Header= function(props) {
     </div>
   );
 }
+const mapStateToProps = (reduxState) => {
+  console.log('state',reduxState)
+  return reduxState
+}
 
-export default Header;
+export default connect (mapStateToProps, { addUser })(Header);

@@ -14,7 +14,7 @@ const Mainview = () => {
   };
 
   const toDisplay = workouts.map((workout) => {
-    return <Displaymain key="workout.main_workout_id" workout={workout} />;
+    return <Displaymain key={workout.main_workout_id} workout={workout} />;
   });
 
   useEffect(() => {

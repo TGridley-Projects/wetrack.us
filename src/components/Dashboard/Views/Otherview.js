@@ -15,7 +15,7 @@ const Otherview = () => {
   
   const toDisplay = 
     workouts.map((workout) => {
-        return(<Displayother key="workout.other_workout_id" workout={workout}/>);
+        return(<Displayother key={workout.other_workout_id} workout={workout}/>);
       });
     
     useEffect(() => {getOtherWorkouts()},[])

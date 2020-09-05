@@ -14,7 +14,6 @@ function App(props) {
       props.history.location.pathname !== "/register" ? (
         <Header />
       ) : null}
-      {console.log('app',props)}
       {routes}
     </div>
   );

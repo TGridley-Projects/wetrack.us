@@ -48,5 +48,10 @@ module.exports = {
     const id = req.params.userid
     const db = req.app.get("db");
     db.get_public_profile(id).then((user) => res.status(200).send(user)).catch(err =>console.log(err))
+  },
+  getOther: (req, res) => {
+    const num = req.body.toStart
+    const db = req.app.get("db");
+    db.get_other_workouts(num).then((workouts) => res.status(200).send(workouts))
   }
 };

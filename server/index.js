@@ -34,8 +34,8 @@ app.post('/api/other_workout', ctrl.addOther);
 app.get('/api/mainworkouts5', ctrl.mainWorkouts5);
 app.get('/api/otherworkouts5', ctrl.otherWorkouts5);
 app.get('/api/publicprofile/:userid', ctrl.publicProfile);
-app.get('/api/typeO/:id', ctrl.getOther);
-app.get('/api/typeM/:id', ctrl.getMain);
-app.get('/api/username/:id', ctrl.getByUsername);
+app.post('/api/typeO', ctrl.getOther);
+// app.get('/api/typeM/:id', ctrl.getMain);
+// app.get('/api/username/:id', ctrl.getByUsername);
 
 app.listen (SERVER_PORT, () => console.log(`server is listening successfully on port ${SERVER_PORT}`))

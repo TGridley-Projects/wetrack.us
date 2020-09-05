@@ -1,105 +1,74 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
 import Displaymain from "../Display/Displaymain";
 import Displayother from "../Display/Displayother";
 
-const Search = function () {
-  const [type, setType] = useState(undefined);
-  const [startNum, setStartNum] = useState(1);
-  const [name, setName] = useState("");
-  const [searchRes, setSearchRes] = useState([]);
+const Search = () => {
+  const [searchByType, setByType] = useState(1);
+  const [startNum, setStartNum] = useState(0);
+  const [displayData, setDisplay] = useState([]);
+  const [totalRows, setTotalRows] = useState(0)
 
-  const searchType = (type) => {
-    if (type < 1 || type > 4) {
-      return alert(
-        "Type selection out of range please select the number from the list"
-      );
-    } else if (type === 4) {
-      Axios.get(`/api/typeO/${type}`, { startNum }).then((res) => {
-        setSearchRes(res);
-      });
+  const findByTypeO = (toStart) => {
+
+      Axios.post('/api/typeO', { toStart })
+      .then((res) => {setDisplay(res.data)})
+  }
+  
+  const findByTypeM = (toStart) => {
+
+      Axios.post('/api/typeO', { toStart })
+      .then((res) => {setDisplay(res.data)})
+  }
+  
+  const toDisplay = displayData.map((workout) =>{ if(workout.other_workout_id > totalRows){setTotalRows(workout.other_workout_id)} return <Displayother key={workout.other_workout_id} workout={workout}/>})
+
+  const nextFive = () =>{
+      const newStart = startNum + 5;
+    const rounded = (num) => {return Math.ceil(num/5)*5};
+    if(rounded(totalRows) === newStart){
+        return(alert('You have reached the end'))
     } else {
-      Axios.get(`/api/typeM/${type}`, { startNum }).then((res) => {
-        setSearchRes(res);
-      });
-    }
-  };
+    setStartNum(newStart);
+    if(searchByType === 4){
+        findByTypeO(newStart)
+      }else {findByTypeM(newStart)}
+  }}
 
-  const searchName = (name) => {
-    Axios.get(`/api/username/${name}`, { startNum }).then((res) =>
-      setSearchRes(res)
-    );
-  };
-
-  const setDisplay = () => {
-    if (type === 4) {
-      searchRes.map((workout) => {
-        return (
-          <Displayother key="workout.other_workout_id" workout={workout} />
-        );
-      });
+  const previousFive = () =>{
+      if(startNum <= 0 ){return(alert('You are at the begining of the search'))
     } else {
-      searchRes.map((workout) => {
-        return <Displaymain key="workout.main_workout_id" workout={workout} />;
-      });
-    }
-  };
+      const newStart = startNum - 5;
+      setStartNum(newStart);
+      if(searchByType === 4){
+        findByTypeO(newStart)
+      }else {findByTypeM(newStart)};
+  }}
 
-  useEffect(() => {
-    searchType(1);
-  }, []);
+  const typeSearch = () =>{
+      const newStart = 0;
+      setStartNum(newStart);
+      if(searchByType === 4){
+          findByTypeO(newStart)
+        }else {findByTypeM(newStart)}
+  }
+
   return (
-    <div className="search">
+    <div>
       <h1>Search</h1>
-      <label> 1: Run, 2: Walk, 3: Bike ride, 4: Other</label>
-      <input
-        type="Int"
-        onChange={(e) => {
-          setType(e.target.value);
-        }}
-        value={type}
-        placeholder="Enter workout type number"
-      />
-      <button
-        onClick={(e) => {
-          setStartNum(1);
-          searchType();
-        }}
-      >
-        Search
-      </button>
-      <button
-        onClick={(e) => {
-          setType("");
-        }}
-      >
-        Clear
-      </button>
-      <label>Username</label>
+      <p>1. Run, 2. Walk, 3. Bike Ride, 4.Other</p>
       <input
         type="text"
+        placeholder="Enter workout by number"
         onChange={(e) => {
-          setName(e.target.value);
+          setByType(e.target.value);
         }}
-        value={name}
-        placeholder="Search by username"
-      ></input>
-      <button
-        onClick={(e) => {
-          setStartNum(1);
-          searchName();
-        }}
-      >
-        Search
-      </button>
-      <button
-        onClick={(e) => {
-          setName("");
-        }}
-      >
-        Clear
-      </button>
-      {setDisplay()}
+        value={searchByType}
+      />
+      <button onClick={(e) => {typeSearch()}}>Search</button>
+      {toDisplay}
+      <button onClick={(e) => {previousFive()}}>Previous 5</button>
+      <button onClick={(e) => {nextFive()}}>Next 5</button>
     </div>
   );
 };
