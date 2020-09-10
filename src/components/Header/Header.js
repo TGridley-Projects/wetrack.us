@@ -14,17 +14,17 @@ const Header= (props) => {
   const logout = ()=>{
     Axios.post('/auth/logout')
   }
- 
-useEffect(() => {
-  Axios.get("auth/user")
+
+  const reload = () =>{
+    Axios.get("auth/user")
   .then((res) => {
     console.log(res.data)
     const {username, profile_pic, phone_number, email} = res.data
-    props.addUser(username, profile_pic, phone_number, email);})
-  if(props.authReducer.username === ''){
-    props.history.push("/");
+    addUser(username, profile_pic, phone_number, email);})
   }
-}, [props, props.authReducer.username, props.location.pathname])
+ 
+useEffect(() => {reload()
+}, [props])
 
 const [dropdownVisible, setDropdown] = useState(false);
 
@@ -36,10 +36,10 @@ const toggleDropdown = () =>{
 
     return (
     <div className="header">
-      <section className="userInfo">
+      {/* <section className="userInfo">
       <img className="userImage"src={props.authReducer.profile_pic} alt="profile"/>
       {console.log(props.authReducer)}
-      </section>
+      </section> */}
       <img className="logo" src={logo} alt="WeTrack.Us logo" />
       <section className="desktopMenu">
         <Link to= '/newmain'><button >

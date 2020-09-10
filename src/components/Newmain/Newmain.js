@@ -91,7 +91,5 @@ function Newmain() {
   );
 }
 
-// const mapStateToProps = (state) => ({
-//   setUID(state)
-// })
+
 export default Newmain;

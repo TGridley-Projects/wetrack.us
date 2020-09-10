@@ -92,17 +92,15 @@ module.exports = {
     req.session.destroy();
     res.sendStatus(200);
   },
-  getUser: (req, res) => {
+  getUser: async (req, res) => {
     const db = req.app.get("db");
-    db.check_user(req.session.user.username)
-      .then((user) => {
-        let newUser = user[0];
+    let newUser= await db.check_user(req.session.user.username)
+       newUser = newUser[0];
         delete newUser.password;
         delete newUser.user_id;
         console.log(newUser);
         res.status(200).send(newUser);
-      })
-      .catch(res.sendStatus(404));
+      
     // if (req.session.user) {
     //   res.status(200).send(req.session.user);
     // } else {
