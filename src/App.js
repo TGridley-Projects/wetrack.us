@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import Axios from 'axios';
+import React from "react";
+// import Axios from 'axios';
 import "./App.css";
 import routes from "./routes";
 import Header from "./components/Header/Header";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import Displaymain from "../Display/Displaymain";
+// import Displaymain from "../Display/Displaymain";
 import Displayother from "../Display/Displayother";
 
 const Search = () => {

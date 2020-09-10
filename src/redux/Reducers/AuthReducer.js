@@ -1,26 +1,25 @@
-const initialState = {
-  user: { username: "", profile_pic: "" },
-};
+// import axios from "axios";
+
+const initialState = { username: "", profile_pic: "", phone_number: "", email: "" };
 
 const ADD_USER = "ADD_USER";
 
-export function addUser(userObj) {
+export const  addUser = (username, profile_pic, phone_number, email) => {
+
+
   return {
     type: ADD_USER,
-    payload: userObj,
+    payload: {username, profile_pic, phone_number, email}
   };
 }
 
 export default function authReducer(state = initialState, action) {
   const { type, payload } = action;
-
   switch (type) {
-    case ADD_USER:
-      return {
-        ...state,
-        user: payload,
-      };
-    default:
+    case ADD_USER: 
+        const {username, profile_pic, phone_number, email} = payload
+        return { ...state, username, profile_pic, phone_number, email };
+     default:
       return state;
   }
 }

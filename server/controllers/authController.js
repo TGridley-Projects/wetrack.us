@@ -1,4 +1,38 @@
+require("dotenv").config();
 const bcrypt = require("bcrypt");
+const aws = require("aws-sdk");
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+const { v4: uuidv4 } = require("uuid");
+const { region, accessKeyId, secretAccessKey } = process.env;
+
+// aws.config.update( {accessKeyId} )
+const s3 = new aws.S3({ accessKeyId, secretAccessKey });
+
+var upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "wetrackus",
+    metadata: function (req, file, cb) {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: function (req, file, cb) {
+      cb(null, req.s3Key);
+    },
+  }),
+});
+const singleFileUpload = upload.single("image");
+
+function uploadToS3(req, res) {
+  req.s3Key = uuidv4();
+  let downloadUrl = `https://s3-${region}.amazonaws.com/wetrackus/${req.s3Key}`;
+  return new Promise((resolve, reject) => {
+    return singleFileUpload(req, res, (err) => {
+      if (err) return reject(err);
+      return resolve(downloadUrl);
+    });
+  });
+}
 
 module.exports = {
   register: async (req, res) => {
@@ -20,10 +54,9 @@ module.exports = {
       newUser = newUser[0];
       req.session.userid = newUser.user_id;
       delete newUser.password;
-      delete newUser.phone_number;
-      delete newUser.email;
       delete newUser.user_id;
-      res.status(200).send(newUser);
+      req.session.user = newUser;
+      res.status(200).send(req.session.user);
     }
   },
   login: async (req, res) => {
@@ -37,11 +70,9 @@ module.exports = {
       if (authenticated) {
         req.session.userid = foundUser.user_id;
         delete foundUser.password;
-        delete foundUser.phone_number;
-        delete foundUser.email;
         delete foundUser.user_id;
-        console.log (req.session.userid)
-        res.status(202).send(foundUser);
+        req.session.user = foundUser;
+        res.status(202).send(req.session.user);
       } else {
         res.status(401).send("Email or Password incorrect");
       }
@@ -49,11 +80,40 @@ module.exports = {
       res.status(401).send("Email or Password incorrect");
     }
   },
-  keepLogged: (req, res) => {
-    const db = req.app.get("db");
-    db.get_public_profile(req.session.userid).then((user) => res.status(200).send(user))
-},
+  // keepLogged: (req, res) => {
+  //   if (req.session.userid) {
+  //     console.log(req.session.userid)
+  //       res.status(200).send(req.session.userid)
+  //     } else {
+  //     res.sendStatus(404);
+  //   }
+  // },
   logout: (req, res) => {
-    req.session.destroy()
-  }
+    req.session.destroy();
+    res.sendStatus(200);
+  },
+  getUser: (req, res) => {
+    const db = req.app.get("db");
+    db.check_user(req.session.user.username)
+      .then((user) => {
+        let newUser = user[0];
+        delete newUser.password;
+        delete newUser.user_id;
+        console.log(newUser);
+        res.status(200).send(newUser);
+      })
+      .catch(res.sendStatus(404));
+    // if (req.session.user) {
+    //   res.status(200).send(req.session.user);
+    // } else {
+    //   res.sendStatus(404);
+    // }
+  },
+  uploadImageToS3: (req, res) => {
+    uploadToS3(req, res)
+      .then((downLoadUrl) => {
+        return res.status(200).send(downLoadUrl);
+      })
+      .catch((err) => console.log(err));
+  },
 };

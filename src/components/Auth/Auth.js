@@ -11,6 +11,8 @@ class Auth extends Component {
       username: "",
       password: "",
       profile_pic: "",
+      phone_number:"",
+      email:""
     };
   }
 
@@ -25,7 +27,8 @@ class Auth extends Component {
     axios
       .post("/auth/login", { username, password })
       .then((res) => {
-        this.props.addUser(res.data);
+        const {username, profile_pic, phone_number, email} = res.data
+        this.props.addUser(username, profile_pic, phone_number, email);
         this.props.history.push("/dashboard");
       })
       .catch((err) => {
@@ -64,5 +67,6 @@ class Auth extends Component {
     );
   }
 }
+const mapStateToProps = state => state
 
-export default connect(null, { addUser })(Auth);
+export default connect(mapStateToProps, { addUser })(Auth);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import ImageUploader from 'react-images-upload';
 import { connect } from 'react-redux';
 import { addUser } from '../../redux/Reducers/AuthReducer';
 import './Register.css';
@@ -12,8 +13,12 @@ class Register extends Component{
             password: '',
             profile_pic: '',
             phone_number: 5300000000,
-            email: ''
+            email: '',
+            pictures: [],
         }
+
+        this.onDrop = this.onDrop.bind(this);
+        this.uploadImages = this.uploadImages.bind(this);
     }
 
     handleChange = (e) => {
@@ -21,13 +26,31 @@ class Register extends Component{
             [e.target.name]: e.target.value,
         });
     };
+
+    onDrop(picture) {
+        this.setState({
+            pictures: this.state.pictures.concat(picture),
+        });
+    }
+    uploadImages(){
+        // const sendImage = this.state.pictures
+        const uploadPromises = this.state.pictures.map(image => {
+            const data = new FormData();
+            data.append('image', image, image.name);
+            return Axios.post('/auth/uploadImage', data)
+        })
+        Axios.all(uploadPromises)
+        .then(res => this.setState({profile_pic: res[0].data}))
+        .catch( err => console.log(err))
+    }
     
     register = () => {
-        const { username, password, profile_pic, phone_number, email } = this.state;
+        const { username, password, profile_pic,  phone_number, email } = this.state;
         Axios.post('/auth/register', { username, password, profile_pic, phone_number, email })
         .then((res) => {
-            this.props.addUser(res.data);
-            this.props.history.push('/dashboard')
+            const {username, profile_pic, phone_number, email} = res.data
+        this.props.addUser(username, profile_pic, phone_number, email);
+        this.props.history.push("/dashboard");
         })
         .catch((err) => {
             console.log(err);
@@ -36,7 +59,7 @@ class Register extends Component{
     };
 
     render(){
-        const { username, password, profile_pic, phone_number, email } = this.state
+        const { username, password, phone_number, email } = this.state
     return(
         <div className='register'>
             <h1>Registration</h1>
@@ -45,7 +68,16 @@ class Register extends Component{
             <p>Password</p>
             <input onChange={(e) => this.handleChange(e)} name='password' type='password' value={password} required/>
             <p>Profile Picture</p>
-            <input onChange={(e) => this.handleChange(e)} name='profile_pic' type='text' value={profile_pic}/>
+            <ImageUploader
+                withIcon={false}
+                withPreview={true}
+                singleImage={true}
+                buttonText='Select image'
+                onChange={this.onDrop}
+                imgExtension={['.jpg', '.png', '.gif']}
+                maxFileSize={5242880}
+            />
+            <button onClick={this.uploadImages}>Upload Image</button>
             <p>Phone Number</p>
             <input onChange={(e) => this.handleChange(e)} name='phone_number' type='integer' value={phone_number}/>
             <p>Email</p>
