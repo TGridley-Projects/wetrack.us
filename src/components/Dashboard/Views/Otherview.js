@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Displayother from "../../Display/Displayother";
+import "./Otherview.css";
 
 const Otherview = () => {
   const [workouts, setWorkouts] = useState([]);
@@ -20,7 +21,8 @@ const Otherview = () => {
     
     useEffect(() => {getOtherWorkouts()},[])
     return (
-      <div>
+      <div className="otherView">
+        <p>Other Workouts</p>
       {toDisplay}
     </div>
   );

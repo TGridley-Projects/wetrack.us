@@ -12,6 +12,10 @@ const Dashboard=function(props){
         <div className='dashboard'>
             <h1>welcome {currentUser.username}</h1>
             {console.log(currentUser)}
+            {/* <section className="userInfo">
+      <img className="userImage"src={props.authReducer.profile_pic} alt="profile"/>
+      {console.log(props.authReducer)}
+      </section> */}
             <section className="mainDisplayed">
                 <Mainview/>
             </section>

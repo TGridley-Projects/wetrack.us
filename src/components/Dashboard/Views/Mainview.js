@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import "./Mainview.css";
 import Displaymain from "../../Display/Displaymain";
 
 const Mainview = () => {
@@ -20,7 +21,12 @@ const Mainview = () => {
   useEffect(() => {
     getMainWorkouts();
   }, []);
-  return <div>{toDisplay}</div>;
+  return (
+    <div className="mainView">
+      <p>Runs/Walks/Bike Rides</p>
+      {toDisplay}
+    </div>
+  );
 };
 
 export default Mainview;
