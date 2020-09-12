@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { addUser } from "../../redux/Reducers/AuthReducer";
 import "./Auth.css";
+import Logobar from "../Logobar/Logobar"
 
 class Auth extends Component {
   constructor(props) {
