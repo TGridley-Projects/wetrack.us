@@ -17,3 +17,15 @@
     align-items: center;
     text-align: center;
 }
+
+.authButtons {
+    width: 40%;
+    display: flex;
+    align-items: space-between;
+    justify-content: space-between;
+}
+
+.buttonShared {
+    background-color: #cbd1e7;
+    color: #1a1dec;
+}

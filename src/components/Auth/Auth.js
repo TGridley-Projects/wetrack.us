@@ -65,8 +65,8 @@ class Auth extends Component {
           />
         </section>
         <section className="authButtons">
-          <button onClick={this.login}>Login</button>
-          <button onClick={(e) => {this.props.history.push('/register')}}>Register</button>
+          <button className="buttonShared" onClick={this.login}>Login</button>
+          <button className="buttonShared" onClick={(e) => {this.props.history.push('/register')}}>Register</button>
         </section>
       </div>
     );

@@ -5,6 +5,10 @@
   flex-direction: column;
   align-items: center;
 }
+input {
+  background-color: #cbd1e7;
+  color: #1a1dec;
+}
 
 
 
