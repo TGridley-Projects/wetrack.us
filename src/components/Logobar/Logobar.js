@@ -1,10 +1,11 @@
 import React from 'react';
 import logo from "../Assets/wtu1logo.png";
+import './Logobar.css';
 
 const Logobar = () => {
     return (
-        <div>
-         <img src={logo} alt="logo"/>  
+        <div className="logoBar">
+         <img className="startLogo" src={logo} alt="logo"/>  
         </div>
     )
 }

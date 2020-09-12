@@ -42,9 +42,12 @@ class Auth extends Component {
     const { username, password } = this.state;
     return (
       <div className="loginPage">
+        <Logobar/>
         <section className="loginBox">
           <h1>Please login.</h1>
+          <br/>
           <h3>If you don't already have an account please register.</h3>
+          <br/>
           <p>Username:</p>
           <input
             onChange={(e) => this.changeHandler(e)}
@@ -52,6 +55,7 @@ class Auth extends Component {
             type="text"
             value={username}
           />
+          <br/>
           <p>Password:</p>
           <input
             onChange={(e) => this.changeHandler(e)}

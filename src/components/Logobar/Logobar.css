@@ -1,0 +1,13 @@
+.logoBar{
+    width: 100vw;
+    height: 15vh;
+    position: fixed;
+    top: 0px;
+    background-color: #cbd1e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.startLogo{
+    height: 95%;
+}
