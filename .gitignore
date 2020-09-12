@@ -12,7 +12,7 @@
 # production
 /build
 .env
-.env.production
+.env.prod
 
 # misc
 .DS_Store
