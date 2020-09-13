@@ -37,11 +37,11 @@ const Header = (props) => {
       <selection className="headerImages">
       {console.log(user)}
       <img className="logo" src={logo} alt="WeTrack.Us logo" />
-      <img
+      <Link to="/myprofile"><img
         className="userImage"
         src={props.authReducer.profile_pic}
         alt="profile"
-      />
+      /></Link>
       {console.log(props.authReducer)}
       </selection>
       <section className="desktopMenu">

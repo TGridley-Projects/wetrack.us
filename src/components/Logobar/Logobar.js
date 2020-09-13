@@ -5,7 +5,7 @@ import './Logobar.css';
 const Logobar = () => {
     return (
         <div className="logoBar">
-         <img className="startLogo" src={logo} alt="logo"/>  
+         <img className="startLogo" src={logo} alt="logo"/>
         </div>
     )
 }
