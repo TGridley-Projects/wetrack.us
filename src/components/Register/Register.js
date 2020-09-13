@@ -4,6 +4,7 @@ import ImageUploader from 'react-images-upload';
 import { connect } from 'react-redux';
 import { addUser } from '../../redux/Reducers/AuthReducer';
 import './Register.css';
+import Logobar from "../Logobar/Logobar"
 
 class Register extends Component{
     constructor(props){
@@ -12,7 +13,7 @@ class Register extends Component{
             username: '',
             password: '',
             profile_pic: '',
-            phone_number: 5300000000,
+            phone_number: '',
             email: '',
             pictures: [],
         }
@@ -20,7 +21,6 @@ class Register extends Component{
         this.onDrop = this.onDrop.bind(this);
         this.uploadImages = this.uploadImages.bind(this);
     }
-
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
@@ -62,6 +62,8 @@ class Register extends Component{
         const { username, password, phone_number, email } = this.state
     return(
         <div className='register'>
+             <Logobar/>
+             <section className="registrationBox">
             <h1>Registration</h1>
             <p>Username</p>
             <input onChange={(e) => this.handleChange(e)} name='username' type='text' value={username} required/>
@@ -77,13 +79,17 @@ class Register extends Component{
                 imgExtension={['.jpg', '.png', '.gif']}
                 maxFileSize={5242880}
             />
+
             <button onClick={this.uploadImages}>Upload Image</button>
             <p>Phone Number</p>
             <input onChange={(e) => this.handleChange(e)} name='phone_number' type='integer' value={phone_number}/>
             <p>Email</p>
             <input onChange={(e) => this.handleChange(e)} name='email' type='email' value={email}/>
+            <section className="registrationButtons">
             <button onClick={(e) => {this.register(e)}}>Register</button>
             <button onClick={(e) => {this.props.history.push('/')}}>Login</button>
+            </section>
+            </section>
         </div>
     );
 };

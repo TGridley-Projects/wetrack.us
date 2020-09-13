@@ -34,7 +34,6 @@ app.use(
 
 app.post("/auth/register", authctrl.register);
 app.post("/auth/login", authctrl.login);
-// app.get("/auth", authctrl.keepLogged);
 app.get("/auth/user", authctrl.getUser);
 app.post("/auth/uploadImage", authctrl.uploadImageToS3);
 app.post("/auth/logout", authctrl.logout);
