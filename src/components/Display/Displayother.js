@@ -1,25 +1,21 @@
 import React from "react";
-import "./Displayother.css"
+import "./Displayother.css";
 
 const Displayother = (props) => {
   const { title, time, username } = props.workout;
   return (
-    <div className="Displayother">
+    <div className="display">
       <section className="workoutBoxMobile">
         <p>
           {username} just worked out for {time}
         </p>
       </section>
-      <section className="workoutBoxTablet">
+      <section className="workoutBoxLarge">
         <p>
           {username} just worked out for {time}
         </p>
-        {title}
+        <p>Titled: {title}</p>
       </section>
-      <section className="workoutBoxLarge">
-       <p>{username} just worked out for {time}</p>
-        {title}
-    </section>
     </div>
   );
 };

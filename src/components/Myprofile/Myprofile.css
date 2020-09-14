@@ -2,7 +2,7 @@
     height: 100vh;
     width: 100vw;
     background-color: #123456;
-    color: #cbd1e7;
+    color: #c5c5c5;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,6 +10,11 @@
 }
 
 .myProfilePic {
+    margin: 20px;
     height: 25%;
     width: auto;
+}
+
+.profileInput {    
+    margin: 0px 0px 20px 0px;
 }

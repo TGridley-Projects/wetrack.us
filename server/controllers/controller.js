@@ -53,5 +53,23 @@ module.exports = {
     const num = req.body.toStart
     const db = req.app.get("db");
     db.get_other_workouts(num).then((workouts) => res.status(200).send(workouts))
+  },
+  editProfile: async (req, res) => {
+    const db = req.app.get("db");
+    const { username, profile_pic, phone_number, email } = req.body;
+    const { user_id } = req.session.user
+    let updatedUser = await db.update_user([
+      user_id,
+      username,
+      profile_pic,
+      phone_number,
+      email,
+    ]);
+    console.log(updatedUser);
+    req.session.userid = updatedUser.user_id;
+    delete updatedUser.user_id;
+    delete updatedUser.password;
+    req.session.user = updatedUser;
+    res.status(200).send(req.session.user);
   }
 };

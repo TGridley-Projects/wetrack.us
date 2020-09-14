@@ -21,8 +21,8 @@
 .authButtons {
     width: 40%;
     display: flex;
-    align-items: space-between;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .buttonShared {

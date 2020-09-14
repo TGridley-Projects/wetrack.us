@@ -33,14 +33,13 @@ class Register extends Component{
         });
     }
     uploadImages(){
-        // const sendImage = this.state.pictures
         const uploadPromises = this.state.pictures.map(image => {
             const data = new FormData();
             data.append('image', image, image.name);
             return Axios.post('/auth/uploadImage', data)
         })
         Axios.all(uploadPromises)
-        .then(res => this.setState({profile_pic: res[0].data}))
+        .then(res => {this.setState({profile_pic: res[0].data}); alert("Picture upload successful")})
         .catch( err => console.log(err))
     }
     

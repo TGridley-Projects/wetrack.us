@@ -40,24 +40,24 @@ const Header = (props) => {
         className="userImage"
         src={props.authReducer.profile_pic}
         alt="profile"
-      /></Link>
-      {console.log(props.authReducer)}
+      />
+      </Link>
       </section>
       <section className="desktopMenu">
         <Link to="/newmain">
-          <button>Add a walk/bike ride/run</button>
+          <button className="desktopMenuButton">Add a walk/bike ride/run</button>
         </Link>
         <Link to="/newother">
-          <button>Add a workout</button>
+          <button className="desktopMenuButton">Add a workout</button>
         </Link>
         <Link to="/dashboard">
-          <button>Home</button>
+          <button className="desktopMenuButton">Home</button>
         </Link>
         <Link to="/search">
-          <button>Search workouts</button>
+          <button className="desktopMenuButton">Search workouts</button>
         </Link>
         <Link to="/">
-          <button onClick={logout}>Logout</button>
+          <button className="desktopMenuButton" onClick={logout}>Logout</button>
         </Link>
       </section>
       <div className="dropDown" onClick={toggleDropdown}>
@@ -66,16 +66,16 @@ const Header = (props) => {
       {dropdownVisible ? (
         <section className="mobileMenu">
           <Link to="/newmain">
-            <button className="mobileButton">Add a walk/bike ride/run</button>
+            <button className="mobileButton" onClick={toggleDropdown}>Add a walk/bike ride/run</button>
           </Link>
           <Link to="/newother">
-            <button className="mobileButton">Add a workout</button>
+            <button className="mobileButton" onClick={toggleDropdown}>Add a workout</button>
           </Link>
           <Link to="/dashboard">
-            <button className="mobileButton">Home</button>
+            <button className="mobileButton" onClick={toggleDropdown}>Home</button>
           </Link>
           <Link to="/search">
-            <button className="mobileButton">Search workouts</button>
+            <button className="mobileButton" onClick={toggleDropdown}>Search workouts</button>
           </Link>
           <Link to="/">
             <button className="mobileButton" onClick={logout}>

@@ -13,7 +13,7 @@ const Displaymain = (props) => {
   }
 
   return (
-    <div className="Displaymain">
+    <div className="display">
       <section className="workoutBoxMobile">
         <p>
           {username} completed a {type} of {distance} miles!
@@ -23,13 +23,12 @@ const Displaymain = (props) => {
         <p>
           {username} completed a {type} of {distance} miles!
         </p>
-        {title}
       </section>
       <section className="workoutBoxLarge">
         <p>
           {username} completed a {type} of {distance} miles!
         </p>
-        {title}
+        <p>Titled: {title}</p>
       </section>
     </div>
   );

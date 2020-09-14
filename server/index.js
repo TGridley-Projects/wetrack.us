@@ -43,6 +43,7 @@ app.get("/api/mainworkouts5", ctrl.mainWorkouts5);
 app.get("/api/otherworkouts5", ctrl.otherWorkouts5);
 app.get("/api/publicprofile/:userid", ctrl.publicProfile);
 app.post("/api/typeO", ctrl.getOther);
+app.put("/api/profileedit", ctrl.editProfile);
 // app.get('/api/typeM/:id', ctrl.getMain);
 // app.get('/api/username/:id', ctrl.getByUsername);
 

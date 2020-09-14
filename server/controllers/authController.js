@@ -6,10 +6,9 @@ const multerS3 = require("multer-s3");
 const { v4: uuidv4 } = require("uuid");
 const { region, accessKeyId, secretAccessKey } = process.env;
 
-// aws.config.update( {accessKeyId} )
 const s3 = new aws.S3({ accessKeyId, secretAccessKey });
 
-var upload = multer({
+const upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: "wetrackus",
@@ -53,8 +52,7 @@ module.exports = {
       ]);
       newUser = newUser[0];
       req.session.userid = newUser.user_id;
-      delete newUser.password;
-      delete newUser.user_id;
+      delete newUser.password;      
       req.session.user = newUser;
       res.status(200).send(req.session.user);
     }
@@ -69,8 +67,7 @@ module.exports = {
       const authenticated = bcrypt.compareSync(password, compareHash);
       if (authenticated) {
         req.session.userid = foundUser.user_id;
-        delete foundUser.password;
-        delete foundUser.user_id;
+        delete foundUser.password;        
         req.session.user = foundUser;
         res.status(202).send(req.session.user);
       } else {
@@ -80,14 +77,7 @@ module.exports = {
       res.status(401).send("Email or Password incorrect");
     }
   },
-  // keepLogged: (req, res) => {
-  //   if (req.session.userid) {
-  //     console.log(req.session.userid)
-  //       res.status(200).send(req.session.userid)
-  //     } else {
-  //     res.sendStatus(404);
-  //   }
-  // },
+
   logout: (req, res) => {
     req.session.destroy();
     res.sendStatus(200);
@@ -97,15 +87,7 @@ module.exports = {
     let newUser= await db.check_user(req.session.user.username)
        newUser = newUser[0];
         delete newUser.password;
-        delete newUser.user_id;
-        console.log(newUser);
-        res.status(200).send(newUser);
-      
-    // if (req.session.user) {
-    //   res.status(200).send(req.session.user);
-    // } else {
-    //   res.sendStatus(404);
-    // }
+        res.status(200).send(newUser);   
   },
   uploadImageToS3: (req, res) => {
     uploadToS3(req, res)

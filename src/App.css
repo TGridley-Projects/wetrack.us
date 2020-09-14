@@ -6,6 +6,7 @@
   align-items: center;
 }
 input {
+  width: 60%;
   background-color: #cbd1e7;
   color: #1a1dec;
 }
