@@ -34,16 +34,15 @@ const Header = (props) => {
 
   return (
     <div className="header">
-      <selection className="headerImages">
-      {console.log(user)}
+      <section className="headerImages">
       <img className="logo" src={logo} alt="WeTrack.Us logo" />
-      <Link to="/myprofile"><img
+      <Link to="/myprofile" className="userImage"><img
         className="userImage"
         src={props.authReducer.profile_pic}
         alt="profile"
       /></Link>
       {console.log(props.authReducer)}
-      </selection>
+      </section>
       <section className="desktopMenu">
         <Link to="/newmain">
           <button>Add a walk/bike ride/run</button>

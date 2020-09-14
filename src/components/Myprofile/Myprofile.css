@@ -1,0 +1,15 @@
+.myProfile {
+    height: 100vh;
+    width: 100vw;
+    background-color: #123456;
+    color: #cbd1e7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.myProfilePic {
+    height: 25%;
+    width: auto;
+}
