@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./Dashboard.css";
+import "../Display/Display.css"
 import Mainview from "./Views/Mainview";
 import Otherview from "./Views/Otherview";
 import { useSelector } from "react-redux";
@@ -7,7 +8,7 @@ import { useSelector } from "react-redux";
 const Dashboard = function (props) {
   const currentUser = useSelector((state) => state.authReducer);
 
-  useEffect(()=>{
+  useEffect(()=>{if(!currentUser){return currentUser}
     
   })
 

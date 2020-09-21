@@ -1,0 +1,64 @@
+.Displayother {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 650px) {
+  .workoutBoxMobile {
+    height: 50px;
+    width: 80%;
+    margin: 2px 35px;
+    border-radius: 15px;
+    background-color: #cbd1e7;
+    color: #1a1dec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .workoutBoxTablet {
+    display: none;
+  }
+
+  .workoutBoxLarge {
+    display: none;
+  }
+}
+@media (min-width: 651px) {
+  .workoutBoxMobile {
+    height: 50px;
+    width: 80%;
+    margin: 2px 0px;
+    border-radius: 15px;
+    background-color: #cbd1e7;
+    color: #1a1dec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .workoutBoxLarge {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .workoutBoxLarge {
+    height: 50px;
+    width: 80%;
+    margin: 2px 0px;
+    border-radius: 15px;
+    background-color: #cbd1e7;
+    color: #1a1dec;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .workoutBoxMobile {
+    display: none;
+  }
+}

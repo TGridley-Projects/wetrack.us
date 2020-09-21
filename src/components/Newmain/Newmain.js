@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "./Newmain.css";
 
 function Newmain() {
   const [workout_type, setExercise] = useState(1);
@@ -41,9 +42,9 @@ function Newmain() {
   const currentUser = useSelector(state => state)
   return (
     <div className="newMain">
-      {console.log('CURRENTUSER',currentUser)}
-      <h1>New Main Workout</h1>
-      <div onChange={(e) => setExercise(e.target.value)}>
+      <section className="inputSection">
+      <h1>New Distance Workout</h1>
+      <div className="radioButtons" onChange={(e) => setExercise(e.target.value)}>
         <input type="radio" value={1} defaultChecked name="exerciseType" /> Run
         <input type="radio" value={2} name="exerciseType" /> Walk
         <input type="radio" value={3} name="exerciseType" /> Bike
@@ -83,10 +84,13 @@ function Newmain() {
         onChange={(e) => setHR(e.target.value)}
         placeholder="Average heart rate"
       />
-      <button onClick={(e) => resetState()}>Reset</button>
+      <section className="inputButtons">
+      <button className="buttonShared" onClick={(e) => resetState()}>Reset</button>
       <Link to="/dashboard">
-        <button onClick={(e) => addWorkout()}>Submit</button>
+        <button className="buttonShared" onClick={(e) => addWorkout()}>Submit</button>
       </Link>
+      </section>
+      </section>
     </div>
   );
 }

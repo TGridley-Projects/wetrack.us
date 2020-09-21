@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
+import "./Newother.css";
 
 function Newother() {
   const [title, setTitle] = useState("");
@@ -30,9 +31,9 @@ function Newother() {
   }
 
   return (
-    <div>
-      <h1>New Other Workout</h1>
-      <div>
+    <div className="newOther">
+      <section className="inputSection">
+        <h1>New Other Workout</h1>
         <input
           className="inputField"
           type="text"
@@ -40,7 +41,7 @@ function Newother() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Title"
         />
-         <input
+        <input
           className="inputField"
           type="text"
           value={intensity}
@@ -53,7 +54,7 @@ function Newother() {
           value={time}
           onChange={(e) => setTime(e.target.value)}
           placeholder="Time hr:min:sec"
-          />   
+        />
         <input
           className="inputField"
           type="text"
@@ -61,11 +62,13 @@ function Newother() {
           onChange={(e) => setHR(e.target.value)}
           placeholder="Average heart rate"
         />
+      </section>
+      <section className="inputButtons">
         <button onClick={(e) => resetState()}>Reset</button>
         <Link to="/dashboard">
           <button onClick={(e) => addWorkout()}>Submit</button>
         </Link>
-      </div>
+      </section>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import "./Displayother.css";
 
 const Displayother = (props) => {
   const { title, time, username } = props.workout;

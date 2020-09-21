@@ -1,5 +1,4 @@
 import React from "react";
-import "./Displaymain.css";
 
 const Displaymain = (props) => {
   let type = "";

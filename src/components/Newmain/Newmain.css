@@ -1,4 +1,4 @@
-.loginPage {
+.newMain {
     height: 100vh;
     width: 100vw;
     background-color: #123456;
@@ -9,23 +9,30 @@
     justify-content: center;
 }
 
-.loginBox{
-    height: 35%;
-    width: 60%;
+.inputSection {
+    height: 70%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.authButtons {
-    width: 40%;
+.radioButtons {
+    width: 60%;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    flex-direction: row;
+    margin: 25px 0px 10px 0px;
 }
 
-.buttonShared {
-    background-color: #cbd1e7;
+.inputButtons {
+    width: 60%;
     color: #1a1dec;
+    display: flex;
+    align-items: space-around;
+    justify-content: space-between;
+}
+
+.inputField {
+    margin: 10px 0px;
 }
