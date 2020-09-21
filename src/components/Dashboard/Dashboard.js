@@ -15,12 +15,14 @@ const Dashboard = function (props) {
   return (
     <div className="dashboard">
       <h1>welcome {currentUser.username}</h1>
+      <div className="workoutDisplays">
       <section className="mainDisplayed">
         <Mainview />
         </section>
         <section className="otherDisplayed">
         <Otherview />
       </section>
+      </div>
     </div>
   );
 };

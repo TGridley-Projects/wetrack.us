@@ -1,6 +1,6 @@
 .otherView {
-    width: 100vw;
-    height: auto;
+    width: 50vw;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;

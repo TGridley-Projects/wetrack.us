@@ -18,11 +18,6 @@ const Displaymain = (props) => {
           {username} completed a {type} of {distance} miles!
         </p>
       </section>
-      <section className="workoutBoxTablet">
-        <p>
-          {username} completed a {type} of {distance} miles!
-        </p>
-      </section>
       <section className="workoutBoxLarge">
         <p>
           {username} completed a {type} of {distance} miles!

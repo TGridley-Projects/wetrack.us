@@ -11,7 +11,7 @@ const Displayother = (props) => {
       </section>
       <section className="workoutBoxLarge">
         <p>
-          {username} just worked out for {time}
+          {username} just worked out for {time}!
         </p>
         <p>Titled: {title}</p>
       </section>
