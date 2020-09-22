@@ -75,7 +75,7 @@ class Register extends Component{
                 singleImage={true}
                 buttonText='Select image'
                 onChange={this.onDrop}
-                imgExtension={['.jpg', '.png', '.gif']}
+                imgExtension={['.jpg', '.png', '.gif', '.jpeg']}
                 maxFileSize={5242880}
             />
 
